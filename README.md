@@ -10,15 +10,15 @@ pip install pipenv
 - more here: https://pipenv-fork.readthedocs.io/en/latest/install.html
 
 
-**2) Starting the test application**
-- from the sampleApp directory, using cmd (or another shell):
+**2) Start the test application**
+- from the sampleApp directory, by using cmd (or another shell):
 ```
 pipenv install
 pipenv shell
 py service.py
 ```
-**3) Starting an empty project with a locust**
-- from the locustTraining directory, using cmd (or another shell):
+**3) Start an empty project with a locust**
+- from the locustTraining directory, by using cmd (or another shell):
 ```
 pipenv install
 pipenv shell
