@@ -17,7 +17,7 @@ pipenv install
 pipenv shell
 py service.py
 ```
-**3) Start an empty project with a locust**
+**3) Start an empty project with Locust**
 - from the locustTraining directory, by using cmd (or another shell):
 ```
 pipenv install
@@ -26,7 +26,7 @@ locust
 ```
 **4) Open your browser and navigate to http://localhost:8089/**
 
-**5) The locust web interface should be displayed. Populate the fields with the following data:**
+**5) The Locust web interface should be displayed. Populate the fields with the following data:**
 - Number of total users to simulate: 5
 - Spawn rate: 1
 - Host: http://localhost:5002
