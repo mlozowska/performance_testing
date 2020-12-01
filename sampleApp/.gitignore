@@ -1,0 +1,15 @@
+*.log
+*.pyc
+.idea/*
+database/primary.db-journal
+database/secondary.db-journal
+/database/primary.db
+/database/secondary.db
+database/results.db
+.project
+.pydevproject
+tests/database/
+tests/files/
+files/bugs/
+files/open_questions/
+files/closed_questions/

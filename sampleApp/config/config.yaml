@@ -1,0 +1,28 @@
+db_config:
+    primary_db_path : database/primary.db
+    secondary_db_path : database/secondary.db
+    result_db_path : database/results.db
+    bug_files_path : files/bugs
+    closed_questions_files_path : files/closed_questions
+    open_questions_files_path : files/open_questions
+
+log:
+    # Directory where logs will be saved
+    output : 'logs'    
+    level : DEBUG
+    format : '[%(asctime)-15s][%(name)s] %(message)s'
+    # If True then all logs from specified level will be posted to console
+    log_on_console : False
+    # If True then each run will have separated logs    
+    split_log : False
+
+service_config:
+    # 900 = 15m
+    results_generation_delay : 1
+    # 5 = 5s
+    post_delay : 0
+    port : 5002
+    allow_to_change_answer : False
+    team_list : config/team_list.yaml
+    question_list : config/question_list.yaml
+    quickest_answer_bonus : 0.2

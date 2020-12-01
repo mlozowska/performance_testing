@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>TestingCup</title>
+      <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="static/normalize.css">
+  <link rel="stylesheet" href="static/skeleton.css">
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+(function($) {
+    $(document).ready(function () {
+        /*-------------------- EXPANDABLE PANELS ----------------------*/
+        var panelspeed = 500; //panel animate speed in milliseconds
+        var totalpanels = {{answers|length}}; //total number of collapsible panels
+        var defaultopenpanel = 0; //leave 0 for no panel open
+        var accordian = false; //set panels to behave like an accordian, with one panel only ever open at once
+
+        var panelheight = new Array();
+        var currentpanel = defaultopenpanel;
+        var iconheight = parseInt($('.icon-close-open').css('height'));
+        var highlightopen = true;
+
+        //Initialise collapsible panels
+        function panelinit() {
+                for (var i=1; i<=totalpanels; i++) {
+                    panelheight[i] = parseInt($('#cp-'+i).find('.expandable-panel-content').css('height'));
+                    $('#cp-'+i).find('.expandable-panel-content').css('margin-top', -panelheight[i]);
+                    if (defaultopenpanel == i) {
+                        $('#cp-'+i).find('.icon-close-open').css('background-position', '0px -'+iconheight+'px');
+                        $('#cp-'+i).find('.expandable-panel-content').css('margin-top', 0);
+                    }
+                }
+        }
+
+        $('.expandable-panel-heading').click(function() {
+            var obj = $(this).next();
+            var objid = parseInt($(this).parent().attr('ID').substr(3,2));
+            currentpanel = objid;
+            if (accordian == true) {
+                resetpanels();
+            }
+
+            if (parseInt(obj.css('margin-top')) <= (panelheight[objid]*-1)) {
+                obj.clearQueue();
+                obj.stop();
+                obj.prev().find('.icon-close-open').css('background-position', '0px -'+iconheight+'px');
+                obj.animate({'margin-top':0}, panelspeed);
+                if (highlightopen == true) {
+                    $('#cp-'+currentpanel + ' .expandable-panel-heading').addClass('header-active');
+                }
+            } else {
+                obj.clearQueue();
+                obj.stop();
+                obj.prev().find('.icon-close-open').css('background-position', '0px 0px');
+                obj.animate({'margin-top':(panelheight[objid]*-1)}, panelspeed);
+                if (highlightopen == true) {
+                    $('#cp-'+currentpanel + ' .expandable-panel-heading').removeClass('header-active');
+                }
+            }
+        });
+
+        function resetpanels() {
+            for (var i=1; i<=totalpanels; i++) {
+                if (currentpanel != i) {
+                    $('#cp-'+i).find('.icon-close-open').css('background-position', '0px 0px');
+                    $('#cp-'+i).find('.expandable-panel-content').animate({'margin-top':-panelheight[i]}, panelspeed);
+                    if (highlightopen == true) {
+                        $('#cp-'+i + ' .expandable-panel-heading').removeClass('header-active');
+                    }
+                }
+            }
+        }
+
+
+        $(window).load(function() {
+ 			panelinit();
+        }); //END LOAD
+    }); //END READY
+})(jQuery);
+</script>
+
+
+<style type="text/css">
+/* --------- COLLAPSIBLE PANELS ----------*/
+td {
+	vertical-align:top;
+}
+p {
+    word-wrap: break-word;
+}
+h2, p, ol, ul, li {
+	margin:0px;
+	padding:0px;
+	font-size:13px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+ol, ul {
+	padding:3px 0 10px 22px;
+}
+li {
+	padding:0 0 4px 0;
+}
+hr {
+	border:none;
+	height:1px;
+	border-top:1px dashed #999;
+}
+#container {
+	width:300px;
+	margin:auto;
+	margin-top:100px;
+}
+
+.expandable-panel {
+    width:100%;
+    position:relative;
+    min-height:50px;
+    min-width: 600px;
+    max-width: 800px;
+    overflow:auto;
+    margin-bottom: 20px;
+	border:1px solid #999;
+}
+.expandable-panel-heading {
+    width:100%;
+    cursor:pointer;
+    min-height:50px;
+    clear:both;
+    background-color:#E5E5E5;
+    position:relative;
+}
+.expandable-panel-heading:hover {
+    color:#666;
+}
+.expandable-panel-heading h2 {
+    padding:14px 10px 9px 15px;
+    font-size:18px;
+    line-height:20px;
+}
+.expandable-panel-content {
+    padding:0 15px 0 15px;
+    margin-top:-999px;
+}
+.expandable-panel-content p {
+    padding:4px 0 6px 0;
+}
+.expandable-panel-content p:first-child  {
+	padding-top:10px;
+}
+.expandable-panel-content p:last-child {
+	padding-bottom:15px;
+}
+.icon-close-open {
+    width:20px;
+    height:20px;
+    position:absolute;
+    background-image:url(../static/plus-sign.png);
+    right:15px;
+}
+
+.expandable-panel-content img {
+	float:right;
+	padding-left:12px;
+	/* clear:both; */
+}
+.header-active {
+    background-color:#D0D7F3;
+}
+
+</style>
+</head>
+<body >
+    <div class="wrapper" >
+        <div class="container" >
+            <table class="u-full-width" align="center">
+                <tr>
+                <td>
+                    <form class="form" action="{{url_for('verify_answers')}}" method="get" >
+                    <input type="hidden" name="not_checked" value=0><button type="submit">Do oceny</button>
+                    </form>
+                </td>
+                <td>
+                    <form class="form" action="{{url_for('verify_answers')}}" method="get" >
+                    <input type="hidden" name="already_checked" value=1><button type="submit">Ocenione</button>
+                    </form>
+                </td>
+                </tr>
+
+            <table class="u-full-width" align="center">
+                <thead>
+
+                <tr>
+                    <th>Data</th>
+                    <th>q ID</th>
+                    <th>Opis błędu</th>
+                    <th>Punkty bazowe</th>
+                    <th>Bonus za pierwszy zgłoszony</th>
+                    <th>Bonus za unikalny</th>
+                    <th>Inny bonus</th>
+                    <th>Komentarz</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for tab in answers %}
+                <form action="{{url_for('update_points')}}" method="post">
+                <tr>
+                    <td class="u-full-width">
+                        <input name="date" class="u-full-width" type="hidden" placeholder="0" value="{{ tab[3] }}">{{tab[3]}}
+
+                        <input name="bug_id" type="hidden" value="{{ tab[1] }}">
+                        <input name="bug_guid" type="hidden" value="{{ tab[2] }}">
+                        <input name="team_id" type="hidden" value="{{ tab[4] }}">
+
+                    </td>
+                    <td class="u-full-width">
+                        <input name="question_id" class="u-full-width" type="hidden" placeholder="0" value="{{ tab[0] }}">{{tab[0]}}
+                    </td>
+                    <td class="u-full-width">
+                        <div class="expandable-panel" id="cp-{{loop.index}}">
+                            <div class="expandable-panel-heading">
+                                <h2>Opis błędu<span class="icon-close-open"></span></h2>
+                            </div>
+                            <div class="expandable-panel-content">
+                                <p style="text-align:left">{{ tab[5].decode('utf-8') }}</p>
+                            </div>
+                        </div>
+
+                    </td>
+                    <td class="u-full-width">
+                        {% if tab[6] is number %}
+                            <input name="base_points" class="u-full-width" type="number" value={{tab[6]}} id="base_points">
+                        {% else %}
+
+                            <input name="base_points" class="u-full-width" type="number" value=0 id="base_points">
+                        {% endif %}
+                    </td>
+                    <td class="u-full-width">
+                        {% if tab[7] is number %}
+                        <input name="bonus_for_first" class="u-full-width" type="number" value={{tab[7]}} id="bonus_for_first">
+                        {% else %}
+                        <input name="bonus_for_first" class="u-full-width" type="number" value=0 id="bonus_for_first">
+                        {% endif %}
+                    </td>
+                    <td class="u-full-width">
+                        {% if tab[8] is number %}
+                            <input name="bonus_for_unique" class="u-full-width" type="number" value={{tab[8]}} id="bonus_for_unique">
+                        {% else %}
+                            <input name="bonus_for_unique" class="u-full-width" type="number" value=0 id="bonus_for_unique">
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if tab[9] is number %}
+                            <input name="other_bonus" class="u-full-width" type="number" value={{tab[9]}} id="other_bonus">
+                        {% else %}
+                            <input name="other_bonus" class="u-full-width" type="number" value=0 id="other_bonus">
+                        {% endif %}
+
+                    </td>
+
+                     <td>
+                        {% if tab[10] %}
+                        <textarea name="comment" id="comment" value={{tab[10].decode('utf-8')}} maxlength="1000">{{tab[10].decode('utf-8')}}</textarea>
+                        {% else %}
+                        <textarea name="comment" id="comment" placeholder="place for your comment..." maxlength="1000"></textarea>
+                        {% endif %}
+                    </td>
+
+                    <td><button type="submit">Oceń</button></td>
+
+                </tr>
+                </form>
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+            <form action="javascript:javascript:history.go(-1)">
+                <button type="submit">Go back</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

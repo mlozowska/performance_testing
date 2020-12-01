@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+itsdangerous = "==0.24"
+Flask = "==1.1.2"
+Jinja2 = "==2.10.1"
+MarkupSafe = "==0.23"
+PyYAML = "==3.11"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"

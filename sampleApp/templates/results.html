@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="30" >
+    <title>TestingCup</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body >
+    <div class="wrapper" >
+        <div class="container" >
+            <table  align="center" style="margin: 0px auto;">
+                <thead>
+                <tr>
+                    <th><h2></h2></th>
+                    <th><h2>Drużyna</h2></th>
+                    <th><h2>Punktacja</h2></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for group in results %}
+                <tr>
+                    <td><h1>{{ loop.index }}</h1></td>
+                    <td><h1>{{ group[0] }}</h1></td>
+                    <td><h1>{{ group[1] }}</h1></td>
+                    <td><h1>{{ group[2] }}</h1></td>
+                    <td><h1>{{ group[3] }}</h1></td>
+                    <td><h1>{{ group[4] }}</h1></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <form action="javascript:javascript:history.go(-1)">
+                <button type="submit">Go back</button>
+            </form>
+        </div>
+        <ul class="bg-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+</html>

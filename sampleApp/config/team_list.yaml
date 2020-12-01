@@ -1,0 +1,41 @@
+teams:
+  Team1:
+    id: "AAA"
+  Team2:
+    id: "BBB"
+  Team3:
+    id: "CCC"
+  Team4:
+    id: "DDD"
+  Team5:
+    id: "EEE"
+  Team6:   
+    id: "FFF"
+  Team7:
+    id: "GGG"
+  Team8:
+    id: "HHH"
+  Team9:
+    id: "III"
+  Team10:
+    id: "JJJ"
+  Team11:
+    id: "KKK"
+  Team12:
+    id: "LLL"
+  Team13:
+    id: "MMM"
+  Team14:
+    id: "NNN"
+  Team15:
+    id: "OOO"
+  Team16:
+    id: "PPP"
+  Team17:
+    id: "RRR"
+  Team18:
+    id: "SSS"
+  Team19:
+    id: "TTT"
+  Team20:
+    id: "UUU"

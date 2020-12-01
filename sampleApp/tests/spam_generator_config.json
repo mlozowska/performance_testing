@@ -1,0 +1,15 @@
+{
+    "ip" : "127.0.0.1",
+    "port" : 5002,
+
+    "delay" : 1,
+
+    "requests" : [
+      {"/sendbug/test_team" : "sample_bug_content1"},
+      {"/sendbug/test_team_2" : "sample_bug_content2"},
+      {"/sendbug/non_existent_team" : "sample_bug_content3"},
+      {"/postformbug" : {"team_id" : "test_team", "bug_content" : "sample_bug_content1"}},
+      {"/postformbug" : {"team_id" : "test_team", "test_team_2" : "sample_bug_content2"}},
+      {"/postformbug" : {"team_id" : "test_team", "non_existent_team" : "sample_bug_content3"}}
+    ]
+}
