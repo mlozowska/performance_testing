@@ -21,7 +21,7 @@ py service.py
 - from the locustTraining directory, using cmd (or another shell):
 ```
 pipenv install
-pipend shell
+pipenv shell
 locust
 ```
 **4) Open your browser and navigate to http://localhost:8089/**
