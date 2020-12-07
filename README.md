@@ -1,5 +1,5 @@
 # Performance Testing with Locust 
-###### (an open source load testing tool: https://locust.io/)
+###### (an open source load testing tool: [link](https://locust.io/)
 
 **1) Make sure you have installed the following:**
 - pipenv and Python v.3.X
@@ -7,7 +7,7 @@
 ```
 pip install pipenv
 ```
-- more here: https://pipenv-fork.readthedocs.io/en/latest/install.html
+- more here: [link](https://pipenv-fork.readthedocs.io/en/latest/install.html)
 
 
 **2) Start the test application**
